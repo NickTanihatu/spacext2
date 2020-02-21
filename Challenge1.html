@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Challenge1</title>
+		
+	<canvas id="myChart"></canvas>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	
+<script>
+	var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['2013', '2014', '2015', '2016', '2017'],
+        datasets: [{
+            label: 'Tesla motor stocks',
+            backgroundColor: 'pink',
+            borderColor: 'purple',
+            data: [39.24, 149.56, 219.31, 240.01, 213.69, 250]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+	
+	</head>
+	<body>
+	
+	
+	</body>
+	
+	</html>
