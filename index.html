@@ -4,34 +4,202 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Challenge1</title>
+		<link href="indexstyle.css" rel="stylesheet" type="text/css">
 		
-	<canvas id="myChart"></canvas>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      // vanaf hier begint snelheid 
+	  
+	  google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(snelheidChart);
+
+      function snelheidChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Snelheid', 0],
+        ]);
+
+        var options = {
+          width: 900, height: 120,
+          redFrom: 92, redTo: 100,
+          yellowFrom:0, yellowTo: 0,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 50 + Math.round(50 * Math.random()));
+          chart.draw(data, options);
+        }, 400);
+   
+      }
+	  
+	 // vanaf hier begint brandstof
+
+	google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(brandstofChart);
 	
-<script>
-	var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+	function brandstofChart() {
+	
+	var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Brandstof', 0],
+        ]);
 
-    // The data for our dataset
-    data: {
-        labels: ['2013', '2014', '2015', '2016', '2017'],
-        datasets: [{
-            label: 'Tesla motor stocks',
-            backgroundColor: 'pink',
-            borderColor: 'purple',
-            data: [39.24, 149.56, 219.31, 240.01, 213.69, 250]
-        }]
-    },
+        var options = {
+          width: 900, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
 
-    // Configuration options go here
-    options: {}
-});
-</script>
+        var chart = new google.visualization.Gauge(document.getElementById('brandstof_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 10 + Math.round(10 * Math.random()));
+          chart.draw(data, options);
+        }, 1000);
+	
+	}
+	  
+	  
+	 // vanaf hier begint dranken
+	  
+	 google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(voorraadChart);
+
+	  
+	   function voorraadChart() {
+
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Maanden', 'water', 'andere dranken'],
+          ['Maart', 850, 600],
+          ['April', 815, 578],
+          ['Mei', 772, 521],
+          ['Juni', 728, 484]
+        ]);
+
+        var options = {
+         
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+	  
+	  // vanaf hier begint temperatuur
+	  
+	  google.charts.load('current', {packages: ['corechart', 'bar']});
+	  google.charts.setOnLoadCallback(temperatuur);
+
+	function temperatuur() {
+      var data = google.visualization.arrayToDataTable([
+        ['City', 'Temperatuur', 'Atmosfeer'],
+        ['Mars', 50, 20],
+        ['Aarde', 78, 17],
+      ]);
+
+       var options = {
+           chartArea: {width: '80%'},
+	};	  
+		  
+      var chart = new google.visualization.BarChart(document.getElementById('temperatuur_div'));
+      chart.draw(data, options);
+    }
+		
+	
+	
+    </script>
 	
 	</head>
 	<body>
+	
+	<img id="logo" src="SpaceLogofinal.png" alt="SpaceX-logo">
+	<br>
+
+	
+	<h3 class="intro"> "SpaceX, hofleverancier voor de reis naar Mars." </h3>
+	
+	
+	<p> Elon Musk is de oprichter en CEO van SpaceX. SpaceX ontwerpt, produceert en lanceert
+geavanceerde raketten en ruimtevaartuigen. In september 2019 onthulde Elon Musk het
+Interplanetary Transport System (ITS) van het bedrijf. De krachtigste raket die ooit is gebouwd.
+	
+	
+<br> <br>
+
+	<p> Het ruimteschip is ontworpen om minimaal 100 mensen te vervoeren. Momenteel zijn er 103 mensen aan boord.
+Op deze website vind je verschillende informatie betreft de data van de reis naar Mars.
+Zo zie je wat de snelheid van de raket is, informatie over de zwaartekracht en afstand naar en rond Mars
+en tot slot een tabel met informatie over de hoeveelheid dranken dat nog beschikbaar is. </p>
+	
+Het thema van deze reis zijn de kleuren blauw en rood. Blauw staat hierbij voor kalmte en rust en rood staat daarentegen
+voor adrenaline en actievol. Precies wat de reis naar Mars omschrijft.  </p>
+	
+
+	<br>
+	
+	<div class="totaal">
+	<div class="eerste">
+	
+	<div>
+	<p class="kopjes"> Snelheid in km (x1000) </p>
+	<div id="chart_div" style="position: relative; 100%; height: 100%;"></div>
+	</div>
+	
+
+	
+	<div>
+	<p class="kopjes"> Brandstofpeil op olieniveau </p>
+	<div id="brandstof_div" style="position: relative; 100%; height: 100%;"></div>
+	</div>
+	
+	
+	</div>
+	
+	<div class="tweede">
+
+	<p class="extra"> Zwaartekracht </p>
+	<h2> 3,711 </h3> <p class="bijschrift"> m/s </p>
+	
+	<div class="ruimte">
+	<br> <br>
+	</div>
+	
+	
+	<p class="extra"> Afstand naar Mars </p>
+	<h2> 55. 758. 006 </h3> <p class="bijschrift"> km </p>
+	
+
+	</div>
+	</div>
+	
+	
+	
+	<div class="totaal2">
+	<div class="derde">	
+	<p class="kopjes"> Dranken (in liters) </p>
+    <div id="columnchart_material" style="position: relative; 100%; height: 100%;"></div>
+  
+	</div>
+	
+	<div class="vierde">
+	<p class="kopjes"> Temperatuur en atmosfeer: Mars & Aarde (in graden celsius) </p>
+	<div id="temperatuur_div" style="position: relative; 100%; height: 100%;"></div>
+	</div>
+	
+	
+	</div>
+
 	
 	
 	</body>
